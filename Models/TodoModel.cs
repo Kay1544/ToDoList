@@ -45,7 +45,6 @@ namespace ToDoList.Models
         public TaskPriority Priority { get; set; } = TaskPriority.Medium;
         public TaskStatus Status { get; set; } = TaskStatus.NotStarted;
 
-        // Пустой конструктор нужен для десериализации JSON
         public TodoModel() { }
 
         public TodoModel(string title, string description, DateTime dueDate,

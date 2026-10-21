@@ -18,7 +18,6 @@ namespace ToDoList
             var repository = new JsonTaskRepository(_dataFile);
             _service = new TodoService(repository);
 
-            // При запуске пробуем загрузить ранее сохранённые задачи
             _service.LoadFromFile();
             RefreshGrid();
         }
