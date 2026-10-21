@@ -1,0 +1,61 @@
+﻿<Window x:Class="ToDoList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Todo List" Height="600" Width="900">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="320"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Список задач -->
+        <DataGrid x:Name="TasksGrid" Grid.Column="0" AutoGenerateColumns="False"
+                  IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="150"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                <DataGridTextColumn Header="Создана" Binding="{Binding CreatedDate, StringFormat='dd.MM.yyyy'}" Width="90"/>
+                <DataGridTextColumn Header="Срок" Binding="{Binding DueDate, StringFormat='dd.MM.yyyy'}" Width="90"/>
+                <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="90"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Панель управления -->
+        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+            <TextBlock Text="Название"/>
+            <TextBox x:Name="TitleBox"/>
+
+            <TextBlock Text="Описание" Margin="0,5,0,0"/>
+            <TextBox x:Name="DescriptionBox" Height="60" AcceptsReturn="True"
+                     TextWrapping="Wrap"/>
+
+            <TextBlock Text="Срок выполнения" Margin="0,5,0,0"/>
+            <DatePicker x:Name="DueDatePicker"/>
+
+            <TextBlock Text="Приоритет" Margin="0,5,0,0"/>
+            <ComboBox x:Name="PriorityBox" SelectedIndex="1">
+                <ComboBoxItem Content="Низкий"/>
+                <ComboBoxItem Content="Средний"/>
+                <ComboBoxItem Content="Высокий"/>
+            </ComboBox>
+
+            <TextBlock Text="Статус" Margin="0,5,0,0"/>
+            <ComboBox x:Name="StatusBox" SelectedIndex="0">
+                <ComboBoxItem Content="Не начато"/>
+                <ComboBoxItem Content="В процессе"/>
+                <ComboBoxItem Content="Завершено"/>
+            </ComboBox>
+
+            <Button Content="Добавить" Click="Add_Click" Margin="0,10,0,0"/>
+            <Button Content="Сохранить изменения" Click="Edit_Click" Margin="0,5,0,0"/>
+            <Button Content="Удалить" Click="Delete_Click" Margin="0,5,0,0"/>
+            <Button Content="Сменить статус" Click="ChangeStatus_Click" Margin="0,5,0,0"/>
+
+            <Separator Margin="0,10"/>
+
+            <Button Content="Сохранить в файл" Click="SaveFile_Click"/>
+            <Button Content="Загрузить из файла" Click="LoadFile_Click" Margin="0,5,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
